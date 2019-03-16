@@ -70,8 +70,7 @@ for epoch in range(num_epochs):
     train_loss.append(iter_loss/iteration)
 
     train_accuracy.append((100 * correct / len(train_datasets)))
-    print('epoch: [{}/{}], training loss: {:.3f}, training accuracy: {}%'.format(epoch +
-                                                                                 1, num_epochs, train_loss[-1],        train_accuracy[-1]))
+    print('epoch: [{}/{}], training loss: {:.3f}, training accuracy: {}%'.format(epoch + 1, num_epochs, train_loss[-1], train_accuracy[-1]))
 
 
 torch.save(net.state_dict(), './weights/mnist_weights.pth.tar')
