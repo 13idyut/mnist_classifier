@@ -15,13 +15,16 @@ stddev_grey = 0.3081
 transforms = transforms.Compose([transforms.Resize((28, 28)),
                                  transforms.ToTensor(),
                                  transforms.Normalize((mean_grey, ), (stddev_grey, ))])
-train_loader = dataloader(dataset=train_datasets,
-                          shuffle=True,
-                          batch_size=batch_size)
+
 train_datasets = datasets.MNIST(root=r'./data',
                                 train=True,
                                 transform=transforms,
                                 download=True)
+
+train_loader = dataloader(dataset=train_datasets,
+                          shuffle=True,
+                          batch_size=batch_size)
+
 net = CNN()
 CUDA = torch.cuda.is_available()
 if CUDA:
@@ -70,7 +73,8 @@ for epoch in range(num_epochs):
     train_loss.append(iter_loss/iteration)
 
     train_accuracy.append((100 * correct / len(train_datasets)))
-    print('epoch: [{}/{}], training loss: {:.3f}, training accuracy: {}%'.format(epoch + 1, num_epochs, train_loss[-1], train_accuracy[-1]))
+    print('epoch: [{}/{}], training loss: {:.3f}, training accuracy: {}%'.format(epoch +
+                                                                                 1, num_epochs, train_loss[-1], train_accuracy[-1]))
 
 
 torch.save(net.state_dict(), './weights/mnist_weights.pth.tar')
